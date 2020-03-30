@@ -1,0 +1,60 @@
+version: '3'
+services:
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker
+    privileged: true
+    environment:
+      - PLEX_CLAIM=${PLEX_CLAIM_TOKEN} 
+      - ADVERTISE_IP=${YOUR_PLEX_FUTURE_URL} 
+      - PLEX_UID=1000
+      - PLEX_GID=1000
+    volumes:
+      - ${PWD}/config/plex:/config
+      - ${PWD}/data/aws_fs:/data:shared
+    ports:
+      - "3005:3005/tcp"
+      - "8324:8324/tcp"
+      - "32469:32469/tcp"
+      - "1900:1900/udp"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
+      - "32401:32400"
+    depends_on:
+  goofys:
+    container_name: goofys
+    image: cloudposse/goofys
+    privileged: true
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - BUCKET=${YOUR_AWS_BUCKET_NAME} 
+      - REGION=${YOUR_AWS_REGION} 
+      - UID=1000
+      - GID=1000
+      - DIR_MODE=0777
+      - FILE_MODE=0777
+      - STAT_CACHE_TTL=0s
+      - TYPE_CACHE_TTL=0s
+    volumes:
+      - ${PWD}/data/aws_fs:/mnt/s3:shared
+      - ${PWD}/config/fuse.conf:/etc/fuse.conf
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    privileged: true
+    environment:
+      - USER=${TRANSMISSION_USERNAME} 
+      - PASS=${TRANSMISSION_PASSWORD} 
+    volumes:
+      - ${PWD}/config/transmission-config:/config
+      - ${PWD}/data/aws_fs:/downloads/complete:shared
+      - ${PWD}/data/transmission-watch:/watch
+      - ${PWD}/data/videos:/completed-videos
+    ports:
+      - "51412:51412"
+      - "51413:51413/udp"
+    depends_on:
+      - goofys
