@@ -49,7 +49,7 @@ services:
       - USER=${TRANSMISSION_USERNAME} 
       - PASS=${TRANSMISSION_PASSWORD} 
     volumes:
-      - ${PWD}/config/transmission-config:/config
+      - ${PWD}/config/transmission:/config
       - ${PWD}/data/aws_fs:/downloads/complete:shared
       - ${PWD}/data/transmission-watch:/watch
       - ${PWD}/data/videos:/completed-videos
