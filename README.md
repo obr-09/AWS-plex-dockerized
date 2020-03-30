@@ -22,7 +22,7 @@ Once you get a bucket ready, setup the command line utility so you have a *~/.aw
 ### Setting up the project
 
 Checkout the project on your server. You will have to fill in the Docker compose variables:
-- **$PWD**: docker compose does not handle relative paths well, as fer as I know. The PWD is simply the path where you cloned the project. 
+- **$PWD**: docker compose does not handle relative paths well, as far as I know. The PWD is simply the path where you cloned the project. 
 - **$PLEX_CLAIM_TOKEN**: this is the token plex gives you to identify your new plex server on its first connexion. Please follow the plex standard procedure. 
 - **$YOUR_PLEX_URL**: the URL you will use to connect to your plex server (http or https).
 - **$YOUR_AWS_BUCKET_NAME**: the name you gave to your aws bucket
