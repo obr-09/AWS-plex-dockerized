@@ -51,6 +51,7 @@ services:
     volumes:
       - ${PWD}/config/transmission:/config
       - ${PWD}/data/aws_fs:/downloads/complete:shared
+      - ${PWD}/data/downloads:/downloads/incomplete
       - ${PWD}/data/transmission_watch:/watch
     ports:
       - "51412:51412"
