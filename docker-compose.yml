@@ -51,7 +51,7 @@ services:
     volumes:
       - ${PWD}/config/transmission:/config
       - ${PWD}/data/aws_fs:/downloads/complete:shared
-      - ${PWD}/data/transmission-watch:/watch
+      - ${PWD}/data/transmission_watch:/watch
     ports:
       - "51412:51412"
       - "51413:51413/udp"
