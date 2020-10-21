@@ -50,7 +50,3 @@ Note that if you stop the stack, you will need to manually unmount the aws fs be
 - Transmission is configured to use a local volume for the pending downloads. I did that to avoid additional costs when using the AWS fs, however that means you need to have the download disk space available when starting a download. You could shift that volume on the AWS S3, it might however increases the costs a lot. 
 
 - When finishing a download, transmission needs to move it from the "current download" FS to the AWS one. It can take a few minutes, and transmission tends to be unavailable during that time (at least the web interface). 
-
-- I uploaded this repository during a trip and had to make a few changes from my code,and there are things I did not have time to test. If you have any issue, feel free to contact me and I will do my best to assist you. 
-
-
